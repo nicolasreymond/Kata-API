@@ -1,6 +1,11 @@
 version: "3"
 services:
-
+  api:
+    build: ./api
+    ports:
+      - 1337:80
+    volumes: 
+      - "./api:/var/www/html"
   db:
     image: mariadb
     environment:

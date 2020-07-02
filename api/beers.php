@@ -32,4 +32,25 @@
 	}
 
 
+	switch($request_method)
+	{
+		
+		case 'GET':
+			// Retrive Products
+			if(!empty($_GET["id"]))
+			{
+				$id=intval($_GET["id"]);
+				getProduct($id);
+			}
+			else
+			{
+				getProducts();
+			}
+			break;
+
+		case 'POST':
+			// Ajouter un produit
+			AddProduct();
+			break;
+	}
 ?>

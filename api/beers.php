@@ -4,7 +4,7 @@
 	$request_method = $_SERVER["REQUEST_METHOD"];
 
 
-	function getProducts()
+	function getBeers()
 	{
 		
 		$query = "SELECT * FROM beers LIMIT 50";
@@ -16,7 +16,7 @@
 		echo json_encode($response, JSON_PRETTY_PRINT);
 	}
 	
-	function getProduct($id=0)
+	function getBeer($id=0)
 	{
 		$query = "SELECT * FROM beers";
 		if($id > 0)
@@ -36,21 +36,23 @@
 	{
 		
 		case 'GET':
-			// Retrive Products
+			// Retrive Beer
 			if(!empty($_GET["id"]))
 			{
 				$id=intval($_GET["id"]);
-				getProduct($id);
+				getBeer($id);
 			}
 			else
 			{
-				getProducts();
+				getBeers();
 			}
 			break;
 
 		case 'POST':
-			// Ajouter un produit
-			AddProduct();
+			// Ajouter une bière
+			AddBeer();
+			break;
+
 			break;
 	}
 ?>

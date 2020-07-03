@@ -32,15 +32,15 @@ docker-compose up -d
 ```
 
 ## Objectifs
-- [ ] Forcker le dépot Git
-- [ ] Créer une nouvelle branche (ex. : `usermame/langage`)
-- [ ] Ajouter un container Docker (pour le langage de votre choix) au docker-compose
-- [ ] Comprendre comment détecter les types de [requêtes HTTP](https://developer.mozilla.org/fr/docs/Web/HTTP/M%C3%A9thode) (GET, POST, PUT, PATCH, DELETE)
-- [ ] Mise en place du CRUD pour l'endpoint `/beer*`
-   - [ ] Mise en place du **`C`**`reate`
-   - [ ] Mise en place du **`R`**`ead`
-   - [ ] Mise en place du **`U`**`pdate`
-   - [ ] Mise en place du **`D`**`elete`
+- [x] Forcker le dépot Git
+- [x] Créer une nouvelle branche (ex. : `usermame/langage`)
+- [x] Ajouter un container Docker (pour le langage de votre choix) au docker-compose
+- [x] Comprendre comment détecter les types de [requêtes HTTP](https://developer.mozilla.org/fr/docs/Web/HTTP/M%C3%A9thode) (GET, POST, PUT, PATCH, DELETE)
+- [x] Mise en place du CRUD pour l'endpoint `/beer*`
+   - [x] Mise en place du **`C`**`reate`
+   - [x] Mise en place du **`R`**`ead`
+   - [x] Mise en place du **`U`**`pdate`
+   - [x] Mise en place du **`D`**`elete`
 - [ ] Mise en place de la lecture des endpoints `/breweries`, `/categories` et `/styles`
 - [ ] Tester l’API avec [postman](https://www.postman.com/), [curl](https://curl.haxx.se/), [httpie](https://httpie.org/), etc… et indiquer ces requêtes dans un fichier de résultats
 - [ ] Faire une page qui documente l'utilisation de l’API (avec un example de requête pour chaques commandes)

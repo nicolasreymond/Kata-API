@@ -3,7 +3,6 @@
 	require_once './db/database.php';
 	$request_method = $_SERVER["REQUEST_METHOD"];
 
-
 	function getBeers()
 	{
 		
@@ -73,6 +72,48 @@
 			return false;
 		}
 
+		header('Content-Type: application/json');
+		echo json_encode($sth);
+	}
+	
+
+	function updateBeer()
+  	{
+		// $_PUT = array(); //tableau qui va contenir les données reçues
+		$tmp = (file_get_contents('php://input'));
+		$_PUT = (json_decode($tmp, true));
+		//construire la requête SQL
+		$sql="UPDATE beers SET brewery_id=:bre, name=:nam, cat_id=:cat, style_id=:sty, abv=:abv, ibu=:ibu, srm=:srm, upc=:upc, filepath=:fil, descript=:des, add_user=:add, last_mod=:las WHERE id=:id";
+		
+		var_dump($_PUT["commentaire"]);
+		var_dump($_PUT["postType"]);
+		var_dump($_PUT["id"]);
+		$sth = EDatabase::prepare($sql);
+		try {
+			$sth->bindParam(':id',  $_PUT["id"], PDO::PARAM_INT);
+			$sth->bindParam(':bre', $_PUT["brewery_id"], PDO::PARAM_INT);
+			$sth->bindParam(':nam', $_PUT["name"], PDO::PARAM_STR);
+			$sth->bindParam(':cat', $_PUT["cat_id"], PDO::PARAM_INT);
+			$sth->bindParam(':sty', $_PUT["style_id"], PDO::PARAM_INT);
+			$sth->bindParam(':abv', $_PUT["abv"]);
+			$sth->bindParam(':ibu', $_PUT["ibu"]);
+			$sth->bindParam(':srm', $_PUT["srm"]);
+			$sth->bindParam(':upc', $_PUT["upc"], PDO::PARAM_INT);
+			$sth->bindParam(':fil', $_PUT["filepath"], PDO::PARAM_STR);
+			$sth->bindParam(':des', $_PUT["descript"], PDO::PARAM_STR);
+			$sth->bindParam(':add', $_PUT["add_user"], PDO::PARAM_INT);
+			$sth->bindParam(':las', date("Y-m-d"));
+			$sth->execute();
+		} catch (PDOException $e) {
+			echo 'Problème de lecture de la base de données: ' . $e->getMessage();
+			EDatabase::rollBack();
+			return false;
+		}
+		
+		header('Content-Type: application/json');
+		echo json_encode($sth);
+	}
+
 	switch($request_method)
 	{
 		
@@ -102,7 +143,7 @@
 
 		case 'PUT':
 			// Modifier une bière
-			updateProduct();
+			updateBeer();
 			break;
 
 		default:
